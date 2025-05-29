@@ -13,7 +13,7 @@ export default function Home() {
     const fetchMatches = async () => {
         try {
             setLoading(true);
-            const res = await axios.get("https://match-center-backend.vercel.app/api/football/matches", {
+            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/football/matches`, {
                 withCredentials: true
             });
             setMatches(res.data.matches);
@@ -26,6 +26,10 @@ export default function Home() {
     };
 
     const applyFilter = (allMatches, status) => {
+        if(!allMatches || allMatches.length === 0) {
+            return;
+        }
+
         let filtered = [];
         if (status === "Upcoming") {
             filtered = allMatches.filter((m) => m.status === "TIMED");
