@@ -13,7 +13,9 @@ export default function Home() {
     const fetchMatches = async () => {
         try {
             setLoading(true);
-            const res = await axios.get("https://match-center-backend.vercel.app/api/football/matches");
+            const res = await axios.get("https://match-center-backend.vercel.app/api/football/matches", {
+                withCredentials: true
+            });
             setMatches(res.data.matches);
             applyFilter(res.data.matches, filter);
         } catch (error) {
