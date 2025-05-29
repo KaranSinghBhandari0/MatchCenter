@@ -13,7 +13,7 @@ export default function Home() {
     const fetchMatches = async () => {
         try {
             setLoading(true);
-            const res = await axios.get("http://localhost:3000/api/football/matches");
+            const res = await axios.get("https://match-center-backend.vercel.app/api/football/matches");
             setMatches(res.data.matches);
             applyFilter(res.data.matches, filter);
         } catch (error) {
